@@ -13,9 +13,11 @@ var app = express();
 // Import the mongoose module
 const mongoose = require("mongoose");
 
-// Set up default mongoose connection
-const mongoDB = "mongodb://hello:XXXX@ac-spyixvx-shard-00-00.xzfwxdh.mongodb.net:27017,ac-spyixvx-shard-00-01.xzfwxdh.mongodb.net:27017,ac-spyixvx-shard-00-02.xzfwxdh.mongodb.net:27017/local_library?ssl=true&replicaSet=atlas-zccfdy-shard-0&authSource=admin&retryWrites=true&w=majority";
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+// Set up mongoose connection
+const dev_db_url =
+"mongodb://cooluser:coolpassword@ac-spyixvx-shard-00-00.xzfwxdh.mongodb.net:27017,ac-spyixvx-shard-00-01.xzfwxdh.mongodb.net:27017,ac-spyixvx-shard-00-02.xzfwxdh.mongodb.net:27017/local_library?ssl=true&replicaSet=atlas-zccfdy-shard-0&authSource=admin&retryWrites=true&w=majority";
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
+
 
 // Get the default connection
 const db = mongoose.connection;
